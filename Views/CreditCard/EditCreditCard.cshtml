@@ -1,0 +1,146 @@
+﻿@using Web_App_BMS.DTOs;
+@model CreditCardDTO;
+
+@{
+    ViewData["Title"] = "Edit a credit card";
+}
+
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Edit a credit card</h2>
+        <form asp-action="EditCreditCard" method="post">
+
+            <div class="form-group">
+                <label asp-for="ExpiryDate">Card's expiry date</label>
+                <input type="date" asp-for="ExpiryDate" class="form-control" id="date" placeholder="Enter card's expiry date" value="@{
+
+        DateTime expiryDate = Model.ExpiryDate.Value;
+        string formattedDate = new DateTime(expiryDate.Year, expiryDate.Month, expiryDate.Day).ToString("yyyy-MM-dd");
+                        @formattedDate
+
+                }">
+
+                <h4 class="text-danger" role="alert">
+                    <span id="error" asp-validation-for="ExpiryDate"></span>
+                </h4>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CardLimit">Card's limit</label>
+                <input asp-for="CardLimit" type="number" class="form-control" id="number" placeholder="Enter card's limit" value="@Model.CardLimit">
+
+                <h4 class="text-danger" role="alert">
+                    <span id="error" asp-validation-for="CardLimit"></span>
+                </h4>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CustomerName">Customer's name</label>
+                <input asp-for="CustomerName" class="form-control" id="text" placeholder="Enter name" value="@Model.CustomerName">
+
+                <h4 class="text-danger" role="alert">
+                    <span id="error" asp-validation-for="CustomerName"></span>
+                </h4>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DateOfBirth">Customer's date of birth</label>
+                <input type="date" class="form-control" id="date" placeholder="Enter date of birth" asp-for="DateOfBirth" value="@{
+
+        DateTime dateOfBirth = Model.DateOfBirth.Value;
+        string formattedDateOfBirth = new DateTime(dateOfBirth.Year, dateOfBirth.Month, dateOfBirth.Day).ToString("yyyy-MM-dd");
+                    @formattedDateOfBirth
+
+                }">
+                <h4 class="text-danger" role="alert">
+                    <span asp-validation-for="DateOfBirth"></span>
+                </h4>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PhoneNumber">Customer's phone number</label>
+                <input type="text" class="form-control" id="text" placeholder="Enter phone number" asp-for="PhoneNumber" value="@Model.PhoneNumber">
+                <h4 class="text-danger" role="alert">
+                    <span asp-validation-for="PhoneNumber"></span>
+                </h4>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AccountBalance">Customer's account balance</label>
+                <input type="number" class="form-control" id="number" placeholder="Enter account balance" asp-for="AccountBalance" value="@Model.AccountBalance">
+                <h4 class="text-danger" role="alert">
+                    <span asp-validation-for="AccountBalance"></span>
+                </h4>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AccountType">Customer's account type</label>
+                <input type="text" class="form-control" id="text" placeholder="Enter account type" asp-for="AccountType" value="@Model.AccountType">
+                <h4 class="text-danger" role="alert">
+                    <span asp-validation-for="AccountType"></span>
+                </h4>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BranchName">Branch name</label>
+                <input type="text" class="form-control" id="text" placeholder="Enter branch name" asp-for="BranchName" value="@Model.BranchName">
+                <h4 class="text-danger" role="alert">
+                    <span asp-validation-for="BranchName"></span>
+                </h4>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BranchAddress">Branch address</label>
+                <input type="text" class="form-control" id="text" placeholder="Enter branch address" asp-for="BranchAddress" value="@Model.BranchAddress">
+                <h4 class="text-danger" role="alert">
+                    <span asp-validation-for="BranchAddress"></span>
+                </h4>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BranchAssets">Branch assets</label>
+                <input type="number" class="form-control" id="number" placeholder="Enter branch assets" asp-for="BranchAssets" value="@Model.BranchAssets">
+                <h4 class="text-danger" role="alert">
+                    <span asp-validation-for="BranchAssets"></span>
+                </h4>
+            </div>
+            @if (@Model != null && @Model.NotFoundPropertyMessage != null)
+            {
+                <h3 class="text-danger" role="alert">
+                    <strong>
+                        @Model.NotFoundPropertyMessage
+                    </strong>
+                </h3>
+            }
+
+            @if (@Model != null && @Model.CreditCardAlreadyExists != null)
+            {
+                <h3 class="text-danger" role="alert">
+                    <strong>
+                        @Model.CreditCardAlreadyExists
+                    </strong>
+                </h3>
+            }
+
+
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+
+        </form>
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+﻿@using Web_App_BMS.Model;
+@model IEnumerable<Loan>;
+
+@{
+    ViewData["Title"] = "See loans";
+}
+<head>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+</head>
+
+<h2>List of all loans</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">row</th>
+            <th scope="col">Issued amount</th>
+            <th scope="col">Remaining amount</th>
+            <th scope="col">Account Balance</th>
+            <th scope="col">Account type</th>
+            <th scope="col">Branch name</th>
+            <th scope="col">Branch address</th>
+            <th scope="col">Branch assets</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{
+            if (Model.Count() != 0)
+            {
+                int row = 1;
+
+                @foreach (var loan in @Model)
+                {
+
+                    <tr>
+                        <td scope="row">@row</td>
+
+                        <td>@loan.Issued_amount</td>
+
+                        <td>@loan.Remaining_amount</td>
+
+                        <td>@loan.Account.Account_Balance</td>
+
+                        <td>@loan.Account.Account_Type</td>
+
+                        <td>@loan.Account.Branch.BranchName</td>
+
+                        <td>@loan.Account.Branch.BranchAddress</td>
+
+                        <td>@loan.Account.Branch.BranchAssets</td>
+
+                        <td>
+                            <a asp-action="EditLoan" asp-route-id="@loan.LoanID">
+                                <button class="btn btn-info">Edit</button>
+                            </a>
+                        </td>
+
+                        <td>
+
+                            <a asp-action="DeleteLoan" asp-route-id="@loan.LoanID">
+                                <button onclick="return confirm('All associated data with the loan will be deleted!\nAre you sure?');" class="btn btn-danger">
+                                    Delete
+                                </button>
+                            </a>
+
+                        </td>
+
+
+                    </tr>
+                    row++;
+                }
+
+            }
+            else
+            {
+                <br />
+                <h1 class="text-danger">There aren't any loans yet!</h1>
+                <br />
+            }
+        }
+    </tbody>
+</table>

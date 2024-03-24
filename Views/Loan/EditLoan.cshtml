@@ -1,0 +1,91 @@
+﻿@using Web_App_BMS.DTOs;
+@model LoanDTO;
+
+@{
+    ViewData["Title"] = "Edit a loan";
+}
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
+<body>
+    <div class="container">
+
+        <h1>Edit a loan</h1>
+
+        <form asp-action="EditLoan" method="post">
+
+            <div class="form-group">
+                <label asp-for="IssuedAmount">Issued amount</label>
+                <input asp-for="IssuedAmount" class="form-control" id="text" placeholder="Enter issued amount" value="@Model.IssuedAmount">
+
+                <h4 class="text-danger" role="alert">
+                    <span id="error" asp-validation-for="IssuedAmount"></span>
+                </h4>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RemainingAmount">Remaining amount</label>
+                <input type="text" class="form-control" id="text" placeholder="Enter remaining amount" asp-for="RemainingAmount" value="@Model.RemainingAmount">
+                <h4 class="text-danger" role="alert">
+                    <span asp-validation-for="RemainingAmount"></span>
+                </h4>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.AccountBalance">Customer's account balance</label>
+                <input type="number" class="form-control" id="number" placeholder="Enter account balance" asp-for="@Model.AccountBalance" value="@Model.AccountBalance">
+                <h4 class="text-danger" role="alert">
+                    <span asp-validation-for="@Model.AccountBalance"></span>
+                </h4>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.AccountType">Customer's account type</label>
+                <input type="text" class="form-control" id="text" placeholder="Enter account type" asp-for="@Model.AccountType" value="@Model.AccountType">
+                <h4 class="text-danger" role="alert">
+                    <span asp-validation-for="@Model.AccountType"></span>
+                </h4>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.BranchName">Branch name</label>
+                <input type="text" class="form-control" id="text" placeholder="Enter branch name" asp-for="@Model.BranchName" value="@Model.BranchName">
+                <h4 class="text-danger" role="alert">
+                    <span asp-validation-for="@Model.BranchName"></span>
+                </h4>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.BranchAddress">Branch address</label>
+                <input type="text" class="form-control" id="text" placeholder="Enter branch address" asp-for="@Model.BranchAddress" value="@Model.BranchAddress">
+                <h4 class="text-danger" role="alert">
+                    <span asp-validation-for="@Model.BranchAddress"></span>
+                </h4>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.BranchAssets">Branch assets</label>
+                <input type="number" class="form-control" id="number" placeholder="Enter branch assets" asp-for="@Model.BranchAssets" value="@Model.BranchAssets">
+                <h4 class="text-danger" role="alert">
+                    <span asp-validation-for="@Model.BranchAssets"></span>
+                </h4>
+            </div>
+
+            @if (@Model != null && @Model.NotFoundPropertyMessage != null)
+            {
+                <h3 class="text-danger" role="alert">
+                    <strong>
+                        @Model.NotFoundPropertyMessage
+                    </strong>
+                </h3>
+            }
+
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+
+        </form>
+
+    </div>
+</body>

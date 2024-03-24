@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<div class="text-center">
+    <h1 class="display-4">Welcome to our Bank Management System</h1>
+</div>
+    <ul class="nav nav-tabs">
+        <li class="dropdown">
+            <a style="font-size:20px;" class="dropdown-toggle" data-toggle="dropdown">Customers</a>
+            <ul class="dropdown-menu">
+            <li><a asp-controller="Customer" asp-action="AddCustomer" style="font-size:20px;">Add a new customer</a></li>
+            <li><a asp-controller="Customer" style="font-size:20px;" asp-action="GetCustomers">See all customers</a></li>
+            </ul>
+        </li>
+
+    <li class="dropdown">
+        <a style="font-size:20px;" class="dropdown-toggle" data-toggle="dropdown">Accounts</a>
+            <ul class="dropdown-menu">
+            <li><a asp-controller="Account" style="font-size:20px;" asp-action="AddAccount">Add a new account</a></li>
+            <li><a asp-controller="Account" style="font-size:20px;" asp-action="ReadAccounts">See all accounts</a></li>
+            </ul>
+        </li>
+
+    <li class="dropdown">
+        <a style="font-size:20px;" class="dropdown-toggle" data-toggle="dropdown">Branches</a>
+            <ul class="dropdown-menu">
+            <li><a asp-controller="Branch" style="font-size:20px;" asp-action="AddBranch">Add a new branch</a></li>
+           <li><a asp-controller="Branch" style="font-size:20px;" asp-action="ReadBranches">See all branches</a></li>
+            </ul>
+        </li>
+
+    <li class="dropdown">
+        <a style="font-size:20px;" class="dropdown-toggle" data-toggle="dropdown">Bankers</a>
+        <ul class="dropdown-menu">
+            <li><a asp-controller="Banker" style="font-size:20px;" asp-action="AddBanker">Add a new banker</a></li>
+           <li><a asp-controller="Banker" style="font-size:20px;" asp-action="ReadBankers">See all bankers</a></li>
+        </ul>
+        </li>
+
+    <li class="dropdown">
+        <a style="font-size:20px;" class="dropdown-toggle" data-toggle="dropdown">Loans</a>
+        <ul class="dropdown-menu">
+            <li><a asp-controller="Loan" style="font-size:20px;" asp-action="AddLoan">Add a new loan</a></li>
+             <li><a asp-controller="Loan" style="font-size:20px;" asp-action="ReadLoans">See all loans</a></li>
+        </ul>
+    </li>
+
+    <li class="dropdown">
+        <a style="font-size:20px;" class="dropdown-toggle" data-toggle="dropdown">Loan Payments</a>
+        <ul class="dropdown-menu">
+            <li><a asp-controller="LoanPayment" style="font-size:20px;" asp-action="AddLoanPayment">Add a new loan payment</a></li>
+           <li><a asp-controller="LoanPayment" style="font-size:20px;" asp-action="ReadLoanPayments">See all loan payments</a></li>
+        </ul>
+    </li>
+
+    <li class="dropdown">
+        <a style="font-size:20px;" class="dropdown-toggle" data-toggle="dropdown">Transactions</a>
+        <ul class="dropdown-menu">
+            <li><a asp-controller="Transaction" style="font-size:20px;" asp-action="AddTransaction">Add a new transaction</a></li>
+            <li><a asp-controller="Transaction" style="font-size:20px;" asp-action="ReadTransactions">See all transactions</a></li>
+        </ul>
+    </li>
+
+    <li class="dropdown">
+        <a style="font-size:20px;" class="dropdown-toggle" data-toggle="dropdown">Credit Cards</a>
+        <ul class="dropdown-menu">
+            <li><a asp-controller="CreditCard" style="font-size:20px;" asp-action="AddCreditCard">Add a credit card</a></li>
+            <li><a asp-controller="CreditCard" style="font-size:20px;" asp-action="ReadCreditCards">See all credit cards</a></li>
+        </ul>
+    </li>
+
+    <li class="dropdown">
+        <a style="font-size:20px;" class="dropdown-toggle" data-toggle="dropdown">Borrowers</a>
+        <ul class="dropdown-menu">
+            <li><a asp-controller="Borrower" style="font-size:20px;" asp-action="ReadBorrowers">See all borrowers</a></li>        </ul>
+    </li>
+
+    </ul>
+       
+

@@ -1,0 +1,82 @@
+﻿@using Web_App_BMS.Model;
+@model IEnumerable<Loan>;
+
+@{
+    ViewData["Title"] = "See borrowers";
+}
+<head>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+</head>
+
+<h2>List of all borrowers</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">row</th>
+            <th scope="col">Issued amount</th>
+            <th scope="col">Remaining amount</th>
+            <th scope="col">Customer's name</th>
+            <th scope="col">Customer's date of birth</th>
+            <th scope="col">Customer's phone number</th>
+            <th scope="col">Account Balance</th>
+            <th scope="col">Account type</th>
+            <th scope="col">Branch name</th>
+            <th scope="col">Branch address</th>
+            <th scope="col">Branch assets</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{
+            if (Model.Count() != 0)
+            {
+                int row = 1;
+                <h2><strong>This is a read-only section which maps tables data only!</strong></h2>
+                @foreach (var borrower in @Model)
+                {
+
+                    <tr>
+                        <td scope="row">@row</td>
+
+                        <td>@borrower.Issued_amount</td>
+
+                        <td>@borrower.Remaining_amount</td>
+
+                        <td>@borrower.Account.Customer.Customer_name</td>
+
+                        <td>@borrower.Account.Customer.Date_of_birth</td>
+
+                        <td>@borrower.Account.Customer.Phone_number</td>
+
+                        <td>@borrower.Account.Account_Balance</td>
+
+                        <td>@borrower.Account.Account_Type</td>
+
+                        <td>@borrower.Account.Branch.BranchName</td>
+
+                        <td>@borrower.Account.Branch.BranchAddress</td>
+
+                        <td>@borrower.Account.Branch.BranchAssets</td>
+
+
+                    </tr>
+                    row++;
+                }
+
+            }
+            else
+            {
+                <br />
+                <h1 class="text-danger">There aren't any borrowers yet!</h1>
+                <br />
+            }
+        }
+    </tbody>
+</table>

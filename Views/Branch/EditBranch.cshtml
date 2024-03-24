@@ -1,0 +1,57 @@
+﻿@using Web_App_BMS.DTOs;
+@model BranchDTO;
+
+@{
+    ViewData["Title"] = "Edit a branch";
+}
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
+<body>
+    <div class="container">
+
+        <h1>Edit a branch</h1>
+
+        <form asp-action="EditBranch" method="post">
+
+            <div class="form-group">
+                <label asp-for="@Model.BranchName">Branch name</label>
+                <input type="text" class="form-control" id="text" placeholder="Enter branch name" asp-for="@Model.BranchName" value="@Model.BranchName">
+                <h4 class="text-danger" role="alert">
+                    <span asp-validation-for="@Model.BranchName"></span>
+                </h4>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.BranchAddress">Branch address</label>
+                <input type="text" class="form-control" id="text" placeholder="Enter branch address" asp-for="@Model.BranchAddress" value="@Model.BranchAddress">
+                <h4 class="text-danger" role="alert">
+                    <span asp-validation-for="@Model.BranchAddress"></span>
+                </h4>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.BranchAssets">Branch assets</label>
+                <input type="number" class="form-control" id="number" placeholder="Enter branch assets" asp-for="@Model.BranchAssets" value="@Model.BranchAssets">
+                <h4 class="text-danger" role="alert">
+                    <span asp-validation-for="@Model.BranchAssets"></span>
+                </h4>
+            </div>
+
+            @if (@Model != null && @Model.NotFoundPropertyMessage != null)
+            {
+                <h3 class="text-danger" role="alert">
+                    <strong>
+                        @Model.NotFoundPropertyMessage
+                    </strong>
+                </h3>
+            }
+
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+
+        </form>
+
+    </div>
+</body>

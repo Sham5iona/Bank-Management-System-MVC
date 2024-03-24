@@ -1,0 +1,101 @@
+﻿@using Web_App_BMS.Model;
+@model IEnumerable<Transaction>;
+
+@{
+    ViewData["Title"] = "See transactions";
+}
+<head>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+</head>
+
+<h2>List of all transactions</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">row</th>
+            <th scope="col">Transaction Type</th>
+            <th scope="col">Transaction Amount</th>
+            <th scope="col">Customer's name</th>
+            <th scope="col">Customer's date of birth</th>
+            <th scope="col">Customer's phone number</th>
+            <th scope="col">Account Balance</th>
+            <th scope="col">Account Type</th>
+            <th scope="col">Branch name</th>
+            <th scope="col">Branch address</th>
+            <th scope="col">Branch assets</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{
+            if (Model.Count() != 0)
+            {
+                int row = 1;
+
+                @foreach (var transaction in @Model)
+                {
+
+                    <tr>
+                        <td scope="row">@row</td>
+
+                        <td>@transaction.TransactionType</td>
+
+                        <td>@transaction.Amount</td>
+
+                        <td>@transaction.Customer.Customer_name</td>
+
+                        <td>@transaction.Customer.Date_of_birth</td>
+
+                        <td>@transaction.Customer.Phone_number</td>
+
+                        <td>@transaction.Account.Account_Balance</td>
+
+                        <td>@transaction.Account.Account_Type</td>
+
+                        <td>@transaction.Account.Branch.BranchName</td>
+
+                        <td>@transaction.Account.Branch.BranchAddress</td>
+
+                        <td>@transaction.Account.Branch.BranchAssets</td>
+
+
+                        <td>
+                            <a asp-action="EditTransaction" asp-route-id="@transaction.TransactionId">
+                                <button class="btn btn-info">Edit</button>
+                            </a>
+                        </td>
+
+                        <td>
+
+                            <a asp-action="DeleteTransaction" asp-route-id="@transaction.TransactionId">
+                                <button onclick="return confirm('All associated data with the transaction will be deleted!\nAre you sure?');" class="btn btn-danger">
+                                    Delete
+                                </button>
+                            </a>
+
+                        </td>
+
+
+                    </tr>
+                    row++;
+                }
+
+            }
+            else
+            {
+                <br />
+                <h1 class="text-danger">There aren't any transactions yet!</h1>
+                <br />
+            }
+        }
+    </tbody>
+</table>
